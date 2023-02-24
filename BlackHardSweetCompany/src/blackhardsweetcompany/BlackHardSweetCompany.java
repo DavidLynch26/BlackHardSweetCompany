@@ -18,7 +18,7 @@ public class BlackHardSweetCompany {
      */
     public static void main(String[] args) {
        new LoaderFrame().setVisible(true);
-//       DatabaseController databaseControl = new DatabaseController();
+       DatabaseController databaseControl = new DatabaseController();
        
     }   
 }

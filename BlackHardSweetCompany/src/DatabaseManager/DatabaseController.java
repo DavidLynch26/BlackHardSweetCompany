@@ -15,8 +15,40 @@ import java.sql.Statement;
  */
 public class DatabaseController {
    static final String DB_URL = "jdbc:mysql://localhost/";
-   static final String USER = "admin";
-   static final String PASS = "admin123";
+   static final String USER = "root";
+   static final String PASS = "";
    
+   public DatabaseController(){
+       init();
+   }
+
+   private void init(){
+       Connection conn = null;
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            Statement stmt = conn.createStatement();
+    	
+            if(!databaseExist()){
+                createDatabase(stmt);
+            } 	
+            
+        }catch (Exception e){
+         e.printStackTrace();
+       }
+   }
    
+   private boolean databaseExist(){ 
+       return false;
+   }
+   
+   private void createDatabase(Statement stmt){
+       try{
+            String sql = "CREATE DATABASE BlackHardSweetCompany";
+            stmt.executeUpdate(sql);
+            System.out.println("Database created successfully...");  
+       }catch (SQLException e){
+           e.printStackTrace();
+       }
+   }
 }
