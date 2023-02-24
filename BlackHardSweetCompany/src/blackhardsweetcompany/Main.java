@@ -4,21 +4,21 @@
  */
 package blackhardsweetcompany;
 
-import GUI.LoaderFrame;
+import GUIController.MainFrame;
 import DatabaseManager.DatabaseController;
 
 /**
  *
  * @author lynch
  */
-public class BlackHardSweetCompany {
+public class Main {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       new LoaderFrame().setVisible(true);
-       DatabaseController databaseControl = new DatabaseController();
-       
+       new MainFrame().setVisible(true);
+       DatabaseController databaseControl = new DatabaseController();  
+//       databaseControl.drop();
     }   
 }
