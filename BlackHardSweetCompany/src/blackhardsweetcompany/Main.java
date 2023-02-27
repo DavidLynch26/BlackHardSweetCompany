@@ -4,8 +4,8 @@
  */
 package blackhardsweetcompany;
 
-import GUIController.MainFrame;
-import DatabaseManager.DatabaseController;
+import guicontroller.MainFrame;
+import databasemanager.DatabaseController;
 
 /**
  *
@@ -17,7 +17,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       new MainFrame().setVisible(true);
+       new MainFrame("Login").setVisible(true);
        DatabaseController databaseControl = new DatabaseController();  
 //       databaseControl.drop();
     }   
