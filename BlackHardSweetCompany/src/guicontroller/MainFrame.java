@@ -5,6 +5,7 @@
 package guicontroller;
 
 import java.awt.Component;
+import java.util.Map;
 import screens.*;
 
 /**
@@ -27,16 +28,14 @@ public class MainFrame extends javax.swing.JFrame {
     public final void loadTabs(String userType){
         if(userType.equals("Driver")){
             DriverScreen driverScreen = new screens.DriverScreen();
-            
-            for(Component comp : driverScreen.getAllPanels()){
-                jTabbedPane1.add("View", comp);
+            for(Map.Entry<String, Component> entry : driverScreen.getAllPanels().entrySet()){
+                panelHolder.add(entry.getKey(), entry.getValue());
             }
+            
         }else if(userType.equals("Admin")){
             AdminScreen adminScreen = new screens.AdminScreen();
             
-            for(Component comp : adminScreen.getAllPanels()){
-                jTabbedPane1.add("View", comp);
-            }
+            
         }   
         pack();
         setLocationRelativeTo(null);
@@ -55,12 +54,12 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        panelHolder = new javax.swing.JTabbedPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Black Hard Sweet Company");
         getContentPane().setLayout(new java.awt.FlowLayout());
-        getContentPane().add(jTabbedPane1);
+        getContentPane().add(panelHolder);
 
         getAccessibleContext().setAccessibleDescription("");
 
@@ -104,6 +103,6 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane panelHolder;
     // End of variables declaration//GEN-END:variables
 }

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DatabaseManager;
+package databasemanager;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -101,24 +101,25 @@ public class DatabaseController {
     }
 
     private Statement setConnection(){
-        Connection conn = null;
         Statement stmt = null;
-         try{
-             Class.forName("com.mysql.cj.jdbc.Driver");
-             conn = DriverManager.getConnection(getDB_URL(), getUSER(), getPASS());
-             stmt = conn.createStatement();
-         }catch (Exception e){
-          e.printStackTrace();
-         }
-         return stmt;
+        
+        try{
+           Class.forName("com.mysql.cj.jdbc.Driver");
+           Connection conn = DriverManager.getConnection(getDB_URL(), getUSER(), getPASS());
+           stmt = conn.createStatement();
+           return stmt;
+        }catch (Exception e){
+           e.printStackTrace();
+        }
+        return stmt;
     }
 
     private void createDatabase(Statement stmt){
         try{
-             String sql = "CREATE DATABASE " + getDB_NAME();
-             stmt.executeUpdate(sql);
-             System.out.println(getDB_NAME()+ " created successfully...");  
-             stmt.close();
+            String sql = "CREATE DATABASE " + getDB_NAME();
+            stmt.executeUpdate(sql);
+            System.out.println(getDB_NAME()+ " created successfully...");  
+            stmt.close();
         }catch (SQLException e){
             if(e.getErrorCode() == 1007){
                 System.out.println(e.getMessage());
