@@ -34,8 +34,9 @@ public class MainFrame extends javax.swing.JFrame {
             
         }else if(userType.equals("Admin")){
             AdminScreen adminScreen = new screens.AdminScreen();
-            
-            
+            for(Map.Entry<String, Component> entry : adminScreen.getAllPanels().entrySet()){
+                panelHolder.add(entry.getKey(), entry.getValue());
+            }           
         }   
         pack();
         setLocationRelativeTo(null);
