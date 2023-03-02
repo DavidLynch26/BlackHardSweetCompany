@@ -6,9 +6,11 @@ package screens;
 
 import databasemanager.DatabaseController;
 import java.awt.Component;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -46,14 +48,14 @@ public class AdminScreen extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         addEmployee = new javax.swing.JPanel();
         firstNameLabel = new javax.swing.JLabel();
-        firstNameTextField = new javax.swing.JTextField();
         lastNameLabel = new javax.swing.JLabel();
-        lastNameTextField = new javax.swing.JTextField();
-        userNameLabel = new javax.swing.JLabel();
+        firstNameTextField = new javax.swing.JTextField();
         userNameTextField = new javax.swing.JTextField();
+        userNameLabel = new javax.swing.JLabel();
         passwordLabel = new javax.swing.JLabel();
-        passwordTextField = new javax.swing.JTextField();
+        lastNameTextField = new javax.swing.JTextField();
         addEmployeeButton = new javax.swing.JButton();
+        passWordTextField = new javax.swing.JTextField();
 
         viewEmployees.setName("View Employees");
 
@@ -87,12 +89,6 @@ public class AdminScreen extends javax.swing.JFrame {
 
         firstNameLabel.setText("First Name");
 
-        firstNameTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                firstNameTextFieldActionPerformed(evt);
-            }
-        });
-
         lastNameLabel.setText("Last Name");
 
         userNameLabel.setText("Username");
@@ -106,57 +102,75 @@ public class AdminScreen extends javax.swing.JFrame {
             }
         });
 
+        passWordTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passWordTextFieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout addEmployeeLayout = new javax.swing.GroupLayout(addEmployee);
         addEmployee.setLayout(addEmployeeLayout);
         addEmployeeLayout.setHorizontalGroup(
             addEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addEmployeeLayout.createSequentialGroup()
-                .addContainerGap(108, Short.MAX_VALUE)
+                .addContainerGap(50, Short.MAX_VALUE)
                 .addGroup(addEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addEmployeeLayout.createSequentialGroup()
                         .addComponent(addEmployeeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
                     .addGroup(addEmployeeLayout.createSequentialGroup()
                         .addComponent(passwordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(33, 33, 33)
-                        .addComponent(passwordTextField)
-                        .addGap(143, 143, 143))
-                    .addGroup(javax.swing.GroupLayout.Alignment.CENTER, addEmployeeLayout.createSequentialGroup()
-                        .addComponent(firstNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
-                        .addGap(33, 33, 33)
-                        .addComponent(firstNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
-                        .addGap(143, 143, 143))
-                    .addGroup(javax.swing.GroupLayout.Alignment.CENTER, addEmployeeLayout.createSequentialGroup()
-                        .addComponent(lastNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(33, 33, 33)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(userNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                        .addGap(54, 54, 54))
+                    .addGroup(addEmployeeLayout.createSequentialGroup()
+                        .addComponent(firstNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lastNameTextField)
-                        .addGap(143, 143, 143))
-                    .addGroup(javax.swing.GroupLayout.Alignment.CENTER, addEmployeeLayout.createSequentialGroup()
-                        .addComponent(userNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(33, 33, 33)
-                        .addComponent(userNameTextField)
-                        .addGap(143, 143, 143))))
+                        .addGap(118, 118, 118))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addEmployeeLayout.createSequentialGroup()
+                        .addGroup(addEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(addEmployeeLayout.createSequentialGroup()
+                                .addComponent(lastNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(2, 2, 2))
+                            .addGroup(addEmployeeLayout.createSequentialGroup()
+                                .addComponent(userNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(3, 3, 3)))
+                        .addGroup(addEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(addEmployeeLayout.createSequentialGroup()
+                                .addComponent(firstNameTextField)
+                                .addGap(118, 118, 118))
+                            .addGroup(addEmployeeLayout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(passWordTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                                .addContainerGap())))))
         );
         addEmployeeLayout.setVerticalGroup(
             addEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addEmployeeLayout.createSequentialGroup()
-                .addGap(82, 82, 82)
-                .addGroup(addEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(firstNameLabel)
-                    .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(addEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lastNameLabel)
-                    .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
+                .addGap(64, 64, 64)
+                .addGroup(addEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(addEmployeeLayout.createSequentialGroup()
+                        .addComponent(firstNameLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lastNameLabel)
+                        .addGap(12, 12, 12))
+                    .addGroup(addEmployeeLayout.createSequentialGroup()
+                        .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addGroup(addEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(userNameLabel)
-                    .addComponent(userNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(addEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passwordLabel)
-                    .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                    .addComponent(passWordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(addEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addEmployeeLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(passwordLabel))
+                    .addGroup(addEmployeeLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(userNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(addEmployeeButton)
                 .addGap(28, 28, 28))
         );
@@ -175,19 +189,32 @@ public class AdminScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void firstNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameTextFieldActionPerformed
+    private void passWordTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passWordTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_firstNameTextFieldActionPerformed
+    }//GEN-LAST:event_passWordTextFieldActionPerformed
 
     private void addEmployeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEmployeeButtonActionPerformed
         // TODO add your handling code here:
         if(userNameTextField.getText().equals("") ||
-                passwordTextField.getText().equals("") ||
-                firstNameTextField.getText().equals("") ||
-                lastNameTextField.getText().equals("")){
+                lastNameTextField.getText().equals("") ||
+                passWordTextField.getText().equals("") ||
+                firstNameTextField.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Please ensure ALL fields are filled", "Incomplete Driver Information", JOptionPane.ERROR_MESSAGE);
         }else{
-            new DatabaseController().addToTables("Driver");
+            
+            ArrayList<String> input = new ArrayList<String>();
+            
+            
+            for(Component comp : this.addEmployee.getComponents()){
+                if(comp instanceof JTextField){
+                    System.out.println(((JTextField) comp).getText());
+                    input.add(((JTextField) comp).getText());
+                }
+            }
+            
+            String[] data = input.toArray(new String[0]);
+            
+            new DatabaseController().addToTables(data, "Driver");
         }
     }//GEN-LAST:event_addEmployeeButtonActionPerformed
 
@@ -235,8 +262,8 @@ public class AdminScreen extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lastNameLabel;
     private javax.swing.JTextField lastNameTextField;
+    private javax.swing.JTextField passWordTextField;
     private javax.swing.JLabel passwordLabel;
-    private javax.swing.JTextField passwordTextField;
     private javax.swing.JLabel userNameLabel;
     private javax.swing.JTextField userNameTextField;
     private javax.swing.JPanel viewEmployees;

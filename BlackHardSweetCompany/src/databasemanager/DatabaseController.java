@@ -4,12 +4,14 @@
  */
 package databasemanager;
 
+import com.mysql.cj.util.StringUtils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,21 +20,21 @@ import java.util.logging.Logger;
  * @author lynch
  */
 public class DatabaseController {
-    private static final String[] baseData= {"(id INTEGER not null,"
+    private static final String[] baseData= {"(id INTEGER not null AUTO_INCREMENT,"
             + "firstname VARCHAR(255),"
             + "lastname VARCHAR(255),"
             + "username VARCHAR(255),"
             + "password VARCHAR(255),"
             + "PRIMARY KEY(id))",
         
-            "(id INTEGER not null,"
+            "(id INTEGER not null AUTO_INCREMENT,"
             + "firstname VARCHAR(255),"
             + "lastname VARCHAR(255),"
             + "username VARCHAR(255),"
             + "password VARCHAR(255),"
             + "PRIMARY KEY(id))",
             
-            "(id INTEGER not null,"
+            "(id INTEGER not null AUTO_INCREMENT,"
             + "firstname VARCHAR(255),"
             + "lastname VARCHAR(255),"
             + "address VARCHAR(255),"
@@ -43,7 +45,7 @@ public class DatabaseController {
             + "price DECIMAL(65),"
             + "PRIMARY KEY(id))", 
             
-            "(id INTEGER not null ,"
+            "(id INTEGER not null AUTO_INCREMENT,"
             + "itemid VARCHAR(255),"
             + "custid INTEGER,"
             + "price DECIMAL(65),"
@@ -133,7 +135,7 @@ public class DatabaseController {
         }
     }
     
-    public void addToTables(String tableName){
+    public void addToTables(String[] data, String tableName){
         try {
             Statement stmt = setConnection();
                         
@@ -142,23 +144,37 @@ public class DatabaseController {
             ResultSet rs = stmt.executeQuery(sql);
             ResultSetMetaData rsmd = rs.getMetaData();
             Integer columnTotal = rsmd.getColumnCount();
-            String[] columnNames = new String[columnTotal];
-            
+            ArrayList<String> columnNamesTmp = new ArrayList<String>();
+                        
             for(int counter = 1; counter <= columnTotal; counter++){
-                columnNames[counter-1] = rsmd.getColumnName(counter);
+                if(rsmd.getColumnName(counter).equals("id")){
+                    continue;
+                }
+                columnNamesTmp.add(rsmd.getColumnName(counter));
             }
+            
+            String[] columnNames = columnNamesTmp.toArray(new String[0]);
+            System.out.println(columnNames);
+            
+            sql = "INSERT INTO " + tableName + " (";
             
             for(String name : columnNames){
-                System.out.println(name);
+                sql += name + ",";
+            }
+            sql = sql.substring(0, sql.length()-1);
+            sql += ") ";
+            
+            sql += "VALUES (";
+            
+            for(String input : data){
+                sql += '\'' + input + '\'' + ",";
             }
             
-//        sql = "INSERT INTO (";
-//        
-//        for(String data){
-//            
-//        }
-//        sql += ")";
-
+            sql = sql.substring(0, sql.length()-1);
+            sql += ")";
+//            System.out.println(sql);
+            
+            stmt.executeUpdate(sql);
 //INSERT INTO table_name (column1, column2, column3, ...)
 //VALUES (value1, value2, value3, ...); INSERT TEMPLATE
 
