@@ -7,7 +7,11 @@ package databasemanager;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -128,6 +132,41 @@ public class DatabaseController {
             }
         }
     }
+    
+    public void addToTables(String tableName){
+        try {
+            Statement stmt = setConnection();
+                        
+            String sql = "SELECT *"
+                    + "FROM "+tableName;
+            ResultSet rs = stmt.executeQuery(sql);
+            ResultSetMetaData rsmd = rs.getMetaData();
+            Integer columnTotal = rsmd.getColumnCount();
+            String[] columnNames = new String[columnTotal];
+            
+            for(int counter = 1; counter <= columnTotal; counter++){
+                columnNames[counter-1] = rsmd.getColumnName(counter);
+            }
+            
+            for(String name : columnNames){
+                System.out.println(name);
+            }
+            
+//        sql = "INSERT INTO (";
+//        
+//        for(String data){
+//            
+//        }
+//        sql += ")";
+
+//INSERT INTO table_name (column1, column2, column3, ...)
+//VALUES (value1, value2, value3, ...); INSERT TEMPLATE
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public static String getDB_URL() {
         return DB_URL;
     }

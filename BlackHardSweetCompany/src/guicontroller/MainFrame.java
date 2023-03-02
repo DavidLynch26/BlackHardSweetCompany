@@ -19,10 +19,7 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame(String loginStatus) {
         initComponents();
-        loadTabs("Driver");
-        
-//        JPanel tstpan = (JPanel) Screens.Login();
-//        swapPanel(Screens.Login());
+        loadTabs("Admin");
     }
 
     public final void loadTabs(String userType){
@@ -38,8 +35,8 @@ public class MainFrame extends javax.swing.JFrame {
                 panelHolder.add(entry.getKey(), entry.getValue());
             }           
         }   
-        pack();
-        setLocationRelativeTo(null);
+        this.pack();
+        this.setLocationRelativeTo(null);
     }
     
 //    public void (){
@@ -59,6 +56,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Black Hard Sweet Company");
+        setPreferredSize(new java.awt.Dimension(500, 500));
         getContentPane().setLayout(new java.awt.FlowLayout());
         getContentPane().add(panelHolder);
 
