@@ -19,7 +19,7 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame(String loginStatus) {
         initComponents();
-//        loadTabs("Admin");
+        loadTabs("Admin");
     }
 
     public final void loadTabs(String userType){
@@ -52,6 +52,8 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Black Hard Sweet Company");
         setPreferredSize(new java.awt.Dimension(500, 500));
+        getContentPane().add(panelHolder, java.awt.BorderLayout.CENTER);
+
         getAccessibleContext().setAccessibleDescription("");
 
         pack();
