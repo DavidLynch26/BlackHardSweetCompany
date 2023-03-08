@@ -19,7 +19,7 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame(String loginStatus) {
         initComponents();
-        loadTabs("Admin");
+//        loadTabs("Admin");
     }
 
     public final void loadTabs(String userType){
@@ -28,20 +28,15 @@ public class MainFrame extends javax.swing.JFrame {
             for(Map.Entry<String, Component> entry : driverScreen.getAllPanels().entrySet()){
                 panelHolder.add(entry.getKey(), entry.getValue());
             }
-            
         }else if(userType.equals("Admin")){
             AdminScreen adminScreen = new screens.AdminScreen();
             for(Map.Entry<String, Component> entry : adminScreen.getAllPanels().entrySet()){
                 panelHolder.add(entry.getKey(), entry.getValue());
             }           
         }   
-        this.pack();
         this.setLocationRelativeTo(null);
+        this.pack();
     }
-    
-//    public void (){
-//        
-//    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -57,12 +52,10 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Black Hard Sweet Company");
         setPreferredSize(new java.awt.Dimension(500, 500));
-        getContentPane().setLayout(new java.awt.FlowLayout());
-        getContentPane().add(panelHolder);
-
         getAccessibleContext().setAccessibleDescription("");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
